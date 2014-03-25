@@ -1,7 +1,4 @@
-<div class="cofree-link">
-  <p><a href="#/sections"><?= __d( 'admin', "Editar secciones") ?></a></p>
+  <li><a href="#/sections"><?= __d( 'admin', "Editar secciones") ?></a></li>
   <? if( isset( $this->request->params ['section_id'])): ?>
-    <p><a href="#/sections/edit/<?= $this->request->params ['section_id'] ?>"><?= __( "Editar sección") ?></a></p>
+    <li><a href="#/sections/edit/<?= $this->request->params ['section_id'] ?>"><?= __( "Editar sección") ?></a></li>
   <? endif ?>
-  <div class="cofree-modal" ng-view click-anywhere-but-here></div>
-</div>

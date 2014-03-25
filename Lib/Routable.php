@@ -23,7 +23,20 @@ class Routable
     
     $url = Sections::read( $section ['Section']['plugin'] .'.url');
     $url ['section_id'] = $section ['Section']['id'];
+    
     Router::connect( $path, $url, $params);
+    
+    $admins = Sections::read( $section ['Section']['plugin'] .'.admin');
+    
+    if( !empty( $admins))
+    {
+      foreach( $admins as $admin)
+      {
+        $admin ['section_id'] = $section ['Section']['id'];
+        $admin [$admin ['action']] = true;
+        Router::connect( $path .'/'. $admin ['action'], $admin, $params);
+      }
+    }
     
     if( isset( $route ['sluggable']))
     {
