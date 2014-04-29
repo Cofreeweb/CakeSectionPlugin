@@ -47,6 +47,18 @@ class SectionsController extends SectionAppController
     }
   }
   
+  public function admin_index()
+  {
+    $sections = $this->Section->getSections();
+    
+    $this->set( array( 
+      'sections' => $sections, 
+      '_serialize' => array( 
+        'sections'
+      )
+    ));
+  }
+  
   public function rest_get( $id = null)
   {
     if( $id)
@@ -60,7 +72,8 @@ class SectionsController extends SectionAppController
               'Section.title',
               'Section.plugin',
               'Section.settings',
-              'Section.menu'
+              'Section.menu',
+              'Section.slug'
           )
       ));
       
@@ -95,7 +108,8 @@ class SectionsController extends SectionAppController
     }
   }
   
-  public function rest_delete()
+  
+  public function admin_delete()
   {
     $this->Section->delete( $this->request->data ['id']);
     $this->set( array(
@@ -105,9 +119,14 @@ class SectionsController extends SectionAppController
   }
   
   
-  public function rest_sort()
+  public function admin_sort()
   {
-    _d( $this->request->data);
+    if( !isset( $this->request->data ['sections']))
+    {
+      return;
+    }
+    
+    $this->Section->saveTree( $this->request->data ['sections']);
   }
   
   public function url( $section_id)

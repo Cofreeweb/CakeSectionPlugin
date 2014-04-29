@@ -10,7 +10,14 @@
       'name' => 'menu',
       'ng-model' => 'section.menu',
       'label' => 'Menu',
-      'options' => Sections::menus()
+      'options' => Sections::menus(),
+      'empty' => false
+  )) ?>
+  
+  <?= $this->Form->input( 'Section.slug', array(
+      'name' => 'slug',
+      'ng-model' => 'section.slug',
+      'label' => 'URL',
   )) ?>
   
   <?= $this->Form->input( 'Section.plugin', array(
@@ -43,7 +50,7 @@
     </div>
     <div ng-if="config.type=='range'">
       <label>{{config.label}}</label>
-      <input ng-model="section.settings[config.key]" id="section_range_{{section.id}}" type="text" slider options="config.options" />
+      <input ng-model="section.settings[config.key]" id="section_range_{{section.id}}" type="text" options="config.options" />
     </div>
   </div>
   <input type="submit" id="submit" value="Submit" />

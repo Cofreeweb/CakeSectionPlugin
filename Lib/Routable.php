@@ -26,6 +26,8 @@ class Routable
     
     Router::connect( $path, $url, $params);
     
+    $route = Sections::read( $section ['Section']['plugin']);
+    
     $admins = Sections::read( $section ['Section']['plugin'] .'.admin');
     
     if( !empty( $admins))
@@ -34,7 +36,15 @@ class Routable
       {
         $admin ['section_id'] = $section ['Section']['id'];
         $admin [$admin ['action']] = true;
-        Router::connect( $path .'/'. $admin ['action'], $admin, $params);
+        
+        if( isset( $route ['sluggable']))
+        {
+          Router::connect( $path .'/:slug/'. $admin ['action'], $admin, $params);
+        }
+        else
+        {
+          Router::connect( $path .'/'. $admin ['action'], $admin, $params);
+        }
       }
     }
     

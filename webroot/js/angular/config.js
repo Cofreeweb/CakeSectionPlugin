@@ -1,10 +1,6 @@
 adminApp.config( ['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/sections', {
-        templateUrl: '/angular/template?t=Section.sections/index',
-        controller: 'SectionsCtrl'
-      }).
       when('/sections/edit/:id', {
         templateUrl: '/angular/template?t=Section.sections/edit',
         controller: 'SectionsEditCtrl'
@@ -14,4 +10,17 @@ adminApp.config( ['$routeProvider',
         controller: 'SectionsEditCtrl'
       })
   }
-]);                                                                                                              
+]);
+
+adminApp.config(function($stateProvider) {
+  $stateProvider
+    .state( 'sections', {
+      url: "/sections",
+      views: {
+        "sections": { 
+          templateUrl: '/angular/template?t=Section.sections/index',
+          controller: 'SectionsCtrl'
+        }
+      }
+    })
+});

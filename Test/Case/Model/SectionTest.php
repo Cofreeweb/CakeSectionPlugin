@@ -14,8 +14,7 @@ class SectionTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'plugin.section.section',
-		'plugin.section.site',
-		'plugin.section.cover_children'
+    'plugin.configuration.configuration'
 	);
 
 /**
@@ -26,6 +25,7 @@ class SectionTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->Section = ClassRegistry::init('Section.Section');
+    $this->Configuration = ClassRegistry::init('Configuration.Configuration');
 	}
 
 /**
@@ -38,5 +38,29 @@ class SectionTest extends CakeTestCase {
 
 		parent::tearDown();
 	}
+  
+/**
+ * Toma las secciones para el menú de edición
+ *
+ * @return void
+ */
+  public function testGetSections()
+  {
+    $this->Configuration->readConfig();
+    $sections = $this->Section->getSections();
+  }
+
+/**
+ * Toma los menús disponibles para la configuración actual
+ *
+ * @return void
+ */
+  public function testGetMenus()
+  {
+    App::uses( 'Sections', 'Section.Lib');
+    $this->Configuration->readConfig();
+    
+    $menus = Sections::menus();
+  }
 
 }

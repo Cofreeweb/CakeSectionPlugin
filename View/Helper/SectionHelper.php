@@ -30,7 +30,7 @@ class SectionHelper extends AppHelper
     
     $out = array();
     
-    foreach( $sections as $section)
+    foreach( $sections as $key => $section)
     {
       $title = !empty( $section ['Section']['title_menu']) ? $section ['Section']['title_menu'] : $section ['Section']['title'];
       $out [] = '<li>'. $this->Html->link( $title, $this->sectionUrl( $section), array(
