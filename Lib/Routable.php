@@ -24,7 +24,14 @@ class Routable
     $url = Sections::read( $section ['Section']['plugin'] .'.url');
     $url ['section_id'] = $section ['Section']['id'];
     
-    Router::connect( $path, $url, $params);
+    if( $section ['Section']['is_homepage'] == 1)
+    {
+      Router::connect( '/', $url, $params);
+    }
+    else
+    {
+      Router::connect( $path, $url, $params);
+    }
     
     $route = Sections::read( $section ['Section']['plugin']);
     

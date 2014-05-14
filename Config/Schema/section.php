@@ -54,6 +54,7 @@ class SectionSchema extends CakeSchema {
     'menu' => array( 'type' => 'string', 'length' => 50, 'null' => true),
     'insert_menu' => array( 'type' => 'boolean'),
     'childrens_table_bool' => array( 'type' => 'boolean'),
+    'is_homepage' => array( 'type' => 'boolean', 'default' => 0, 'key' => 'index'),
     'ssl' => array( 'type' => 'boolean', 'default' => 0, 'key' => 'index'),
     'restricted' => array( 'type' => 'boolean', 'default' => 0, 'key' => 'index'),
     'webmap' => array( 'type' => 'boolean', 'default' => 1, 'key' => 'index'),
@@ -69,6 +70,7 @@ class SectionSchema extends CakeSchema {
  		    'parent_id' => array( 'column' => 'parent_id', 'unique' => 0),
  		    'lft' => array( 'column' => 'lft', 'unique' => 0),
  		    'rght' => array( 'column' => 'rght', 'unique' => 0),
+ 		    'is_homepage' => array( 'column' => 'is_homepage', 'unique' => 0),
  		 )
 	);
 	
